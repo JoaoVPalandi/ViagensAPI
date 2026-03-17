@@ -2,10 +2,10 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from app.database import Base
 
 
-class ModeloVeiculo(Base):
+class ModeloVeiculoModel(Base):
     __tablename__ = "modelo_veiculo"
 
-    id_modelo_veiculo = Column(Integer, primary_key=True)
+    id_modelo_veiculo = Column(Integer, primary_key=True, autoincrement=True)
     nome_modelo = Column(String(45))
     fabricante = Column(String(45))
     cor = Column(String(45))

@@ -2,10 +2,10 @@ from sqlalchemy import Column, BigInteger, Integer, DECIMAL, DateTime, ForeignKe
 from app.database import Base
 
 
-class Pagamento(Base):
+class PagamentoModel (Base):
     __tablename__ = "pagamento"
 
-    id_pagamentos = Column(BigInteger, primary_key=True)
+    id_pagamentos = Column(BigInteger, primary_key=True, autoincrement=True)
 
     id_corrida = Column(BigInteger, ForeignKey("corrida.id_corrida"))
     valor = Column(DECIMAL(10,2))
@@ -16,3 +16,5 @@ class Pagamento(Base):
     )
 
     datahora_transacao = Column(DateTime)
+
+    

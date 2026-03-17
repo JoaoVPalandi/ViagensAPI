@@ -32,15 +32,20 @@ async def deletar_avaliacao(id: int, db: Session = Depends(get_db)):
    db.commit()
    return('Pronto, id deletado')
 
-@avaliacao.put("/update/{id}")
+@avaliacao.get('/update/{id}')
 async def atualizar_avaliacao(id: int, dados: AvaliacaoSchema, db: Session = Depends(get_db)):
     avaliacao = db.query(AvaliacaoModel).filter(AvaliacaoModel.id_avaliacao == id).first()
+
     if not avaliacao:
         raise HTTPException(
             status_code = status.HTTP_404_NOT_FOUND, 
             detail = f"Avaliação com ID {id} não encontrada"
             )
 
-    db.query(AvaliacaoModel).filter(AvaliacaoModel.id_avaliacao == id).update(dados.model_dump(exclude_unset=True))
+    for campo, valor in dados.model_dump().items():
+        setattr(avaliacao, campo, valor)
+    
     db.commit()
-    return (dados)
+    db.refresh(avaliacao)
+
+    return avaliacao

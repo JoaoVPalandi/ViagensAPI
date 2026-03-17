@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DECIMAL
 from app.database import Base
 
 
-class ClasseVeiculo(Base):
+class ClasseModel(Base):
     __tablename__ = "classe_veiculo"
 
     id_classe_veiculo = Column(Integer, primary_key=True, autoincrement=True)

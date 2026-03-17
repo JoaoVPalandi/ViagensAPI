@@ -10,7 +10,7 @@ Accept: application/json
 
 ###-------------------Variáveis de ambiente para avaliação------------------###
 
-### Criação de uma série
+### Criação de uma avaliação
 POST {{base_url}}/avaliacao HTTP/1.1
 Content-Type: application/json
 
@@ -40,4 +40,137 @@ Content-Type: application/json
 
 ###------------------------------------------------------------------------###
 
-###-------------------Variáveis de ambiente para avaliação-----------------###
+###-------------------Variáveis de ambiente para classes de veículos-----------------###
+
+POST {{base_url}}/classe_veiculo HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome_classe": "Executivo",
+    "fator_preco": 1.5
+}
+
+### Listagem de classes de veículos
+GET {{base_url}}/classe_veiculo/classes HTTP/1.1
+Accept: application/json
+
+### deletar uma classe de veículo
+DELETE {{base_url}}/classe_veiculo/delete/4 HTTP/1.1
+Accept: application/json
+
+### Atualizar uma classe de veículo
+PUT {{base_url}}/classe_veiculo/update/3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome_classe": "Luxo",
+    "fator_preco": 2.0
+}
+
+###------------------------------------------------------------------------###
+###--------------Variáveis de ambiente para metodo pagamento-----------###
+
+POST {{base_url}}/metodo_pagamento HTTP/1.1
+Content-Type: application/json
+
+{
+    "valor": 100.0,
+    "data_pagamento": "2024-06-01",
+    
+}
+
+### Listagem de métodos de pagamento
+GET {{base_url}}/metodo_pagamento/pagamentos HTTP/1.1   
+Accept: application/json
+
+### deletar um método de pagamento
+DELETE {{base_url}}/metodo_pagamento/delete/2 HTTP/1.1
+Accept: application/json
+
+### Atualizar um método de pagamento
+PUT {{base_url}}/metodo_pagamento/update/3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "valor": 150.0,
+    "data_pagamento": "2024-06-02"
+}
+
+###------------------------------------------------------------------------###
+###-------------------Variáveis de ambiente para pagamento-----------------###
+
+POST {{base_url}}/pagamento HTTP/1.1
+Content-Type: application/json
+
+{
+    "valor": 200.0,
+    "data_pagamento": "2024-06-01"
+}
+
+### Listagem de pagamentos
+GET {{base_url}}/pagamento/pagamentos HTTP/1.1  
+Accept: application/json
+
+### deletar um pagamento
+DELETE {{base_url}}/pagamento/delete/1 HTTP/1.1
+Accept: application/json
+
+### Atualizar um pagamento
+PUT {{base_url}}/pagamento/update/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "valor": 50.0,
+    "data_pagamento": "2024-06-02"
+}
+
+
+###------------------------------------------------------------------------###
+###-------------------Variáveis de ambiente para corridas------------------###
+
+### Criação de uma corrida
+POST {{base_url}}/corrida HTTP/1.1
+Content-Type: application/json
+
+{
+    "local_partida": "Avenida Paulista, São Paulo",
+    "local_destino": "Aeroporto de Congonhas, São Paulo",
+    "datahora_inicio": "2024-06-01T14:00:00",
+    "datahora_fim": "2024-06-01T14:30:00",
+    "id_avaliacao": 1,
+    "id_servico": 1,
+    "id_motorista": 1,
+    "id_passageiro": 1,
+    "duracao_total": 30,
+    "valor_estimado": 50.0,
+    "status": "concluída"
+}
+
+### Listagem de corridas
+GET {{base_url}}/corrida/corridas HTTP/1.1
+Accept: application/json
+
+### deletar uma corrida
+DELETE {{base_url}}/corrida/delete/1 HTTP/1.1
+Accept: application/json
+
+### Atualizar uma corrida
+PUT {{base_url}}/corrida/update/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "local_partida": "Avenida Um, São Paulo",
+    "local_destino": "Aeroporto Guarulhos, São Paulo",
+    "datahora_inicio": "2024-06-01T14:00:00",
+    "datahora_fim": "2024-06-01T14:50:00",
+    "id_avaliacao": 1,
+    "id_servico": 1,
+    "id_motorista": 1,
+    "id_passageiro": 1,
+    "duracao_total": 30,
+    "valor_estimado": 50.0,
+    "status": "concluída"
+}
+
+
+

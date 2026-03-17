@@ -2,7 +2,7 @@ from sqlalchemy import Column, BigInteger, Integer, DateTime, ForeignKey
 from app.database import Base
 
 
-class MotoristaVeiculo(Base):
+class MotoristaVeiculoModel(Base):
     __tablename__ = "motorista_veiculo"
 
     id_motorista = Column(
@@ -17,5 +17,5 @@ class MotoristaVeiculo(Base):
         primary_key=True
     )
 
-    datahora_inicio_disponibilidade = Column(DateTime)
-    datahora_fim_disponibilidade = Column(DateTime)
+    datahora_inicio = Column(DateTime)
+    datahora_fim = Column(DateTime)

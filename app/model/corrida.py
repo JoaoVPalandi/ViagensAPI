@@ -2,10 +2,10 @@ from sqlalchemy import Column, BigInteger, Integer, String, DateTime, DECIMAL, F
 from app.database import Base
 
 
-class Corrida(Base):
+class CorridaModel(Base):
     __tablename__ = "corrida"
 
-    id_corrida = Column(BigInteger, primary_key=True)
+    id_corrida = Column(BigInteger, primary_key=True, autoincrement=True)
 
     id_passageiro = Column(BigInteger, ForeignKey("passageiro.id_passageiro"))
     id_motorista = Column(BigInteger, ForeignKey("motorista.id_motorista"))
@@ -21,4 +21,4 @@ class Corrida(Base):
     local_destino = Column(String(50))
 
     valor_estimado = Column(DECIMAL(10,2))
-    status = Column(String(20))
+    status_corrida = Column(String(20))
