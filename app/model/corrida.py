@@ -17,8 +17,8 @@ class Corrida(Base):
 
     duracao_total = Column(DECIMAL(4,2))
 
-    gps_local_partida = Column(String(50))
-    gps_local_destino = Column(String(50))
+    local_partida = Column(String(50))
+    local_destino = Column(String(50))
 
     valor_estimado = Column(DECIMAL(10,2))
     status = Column(String(20))

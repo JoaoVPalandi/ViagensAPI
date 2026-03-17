@@ -1,3 +1,43 @@
-### variaveis de ambiente
-@base_url = "http://127.0.0.1:8000"
+### Variáveis de ambiente
 
+@base_url = http://127.0.0.1:8000
+
+### Teste de conexão com a API
+
+GET {{base_url}}/ HTTP/1.1
+Accept: application/json
+
+
+###-------------------Variáveis de ambiente para avaliação------------------###
+
+### Criação de uma série
+POST {{base_url}}/avaliacao HTTP/1.1
+Content-Type: application/json
+
+{
+    "nota_passageiro": 4.5,
+    "nota_motorista": 5.0,
+    "datahora_avaliacao": "2024-06-01T12:00:00"
+}
+
+### Listagem de avaliações
+GET {{base_url}}/avaliacao/avaliações HTTP/1.1
+Accept: application/json
+
+### deletar uma avaliação
+DELETE {{base_url}}/avaliacao/delete/1 HTTP/1.1
+Accept: application/json
+
+### Atualizar uma avaliação
+PUT {{base_url}}/avaliacao/update/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nota_passageiro": 4.0,
+    "nota_motorista": 4.5,
+    "datahora_avaliacao": "2024-06-01T12:00:00"
+}
+
+###------------------------------------------------------------------------###
+
+###-------------------Variáveis de ambiente para avaliação-----------------###
