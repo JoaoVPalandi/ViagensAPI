@@ -32,7 +32,7 @@ async def deletar_avaliacao(id: int, db: Session = Depends(get_db)):
    db.commit()
    return('Pronto, id deletado')
 
-@avaliacao.get('/update/{id}')
+@avaliacao.put('/update/{id}')
 async def atualizar_avaliacao(id: int, dados: AvaliacaoSchema, db: Session = Depends(get_db)):
     avaliacao = db.query(AvaliacaoModel).filter(AvaliacaoModel.id_avaliacao == id).first()
 

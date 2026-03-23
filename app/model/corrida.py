@@ -9,7 +9,7 @@ class CorridaModel(Base):
 
     id_passageiro = Column(BigInteger, ForeignKey("passageiro.id_passageiro"))
     id_motorista = Column(BigInteger, ForeignKey("motorista.id_motorista"))
-    id_servico = Column(Integer, ForeignKey("servico.id_servico"))
+    id_servico = Column(Integer, ForeignKey("serviço.id_servico"))
     id_avaliacao = Column(BigInteger, ForeignKey("avaliacao.id_avaliacao"))
 
     datahora_inicio = Column(DateTime)

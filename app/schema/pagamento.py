@@ -3,7 +3,7 @@ from typing import Optional
 
 class PagamentoSchema(BaseModel):
     valor: Optional[float] = None
-    data_pagamento: Optional[str] = None
+    datahora_transacao: Optional[str] = None
     id_metodo_pagamento: int
     id_corrida: int 
 

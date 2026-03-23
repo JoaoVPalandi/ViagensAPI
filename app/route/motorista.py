@@ -4,50 +4,63 @@ from app.database import get_db
 from app.model.motorista import Motorista
 from app.schema.motorista import MotoristaSchema
 
-pagamento = APIRouter()
+motorista = APIRouter()
 
-@pagamento.post("/")
-async def criar_pagamento(dados: MotoristaSchema, db: Session = Depends(get_db)):
-    novo_pagamento = Motorista(**dados.model_dump())
-    db.add(novo_pagamento)
+##----------------------------------------------------------------------------##
+
+# Criar um novo motorista
+
+@motorista.post("/")
+async def criar_motorista(motorista: MotoristaSchema, db: Session = Depends(get_db)):
+    novo_motorista = Motorista(**motorista.model_dump())
+    db.add(novo_motorista)
     db.commit()
-    db.refresh(novo_pagamento)
-    return novo_pagamento
+    db.refresh(novo_motorista)
+    return novo_motorista
 
-@pagamento.get("/pagamentos")
-async def listar_pagamentos(db: Session = Depends(get_db)):
-    pagamentos = db.query(Motorista).all()
-    return pagamentos  
+##----------------------------------------------------------------------------##
 
+# Listar todos os motoristas
 
-@pagamento.delete("/delete/{id}")
-async def deletar_pagamento(id: int, db: Session = Depends(get_db)):
-    pagamento = db.query(Motorista).filter(Motorista.id_motorista == id).first()
+@motorista.get("/listar")
+async def listar_motoristas(db: Session = Depends(get_db)):
+    return db.query(Motorista).all()
 
-    if not pagamento:
+##----------------------------------------------------------------------------##
+
+# Deletar um motorista por ID
+
+@motorista.delete("/deletar/{id}")
+async def deletar_motorista(id: int, db: Session = Depends(get_db)):
+    motorista = db.query(Motorista).filter(Motorista.id_motorista == id).first()
+
+    if not motorista:
         raise HTTPException(
-            status_code = status.HTTP_404_NOT_FOUND, 
-            detail = f"Pagamento com ID {id} não encontrado"
-            )
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"O motorista com ID {id} não foi encontrado")
     
-    db.delete(pagamento)
+    db.delete(motorista)
     db.commit()
-    return('Pronto, id deletado')
+    return("deletado")
 
-@pagamento.put("/update/{id}")
-async def atualizar_pagamento(id: int, dados: MotoristaSchema, db: Session = Depends(get_db)):
-    pagamento = db.query(Motorista).filter(Motorista.id_motorista == id).first()
+##----------------------------------------------------------------------------##
 
-    if not pagamento:
+# Atualizar um motorista por ID
+
+@motorista.put("/atualizar/{id}")
+async def atualizar_motorista(id: int, motorista: MotoristaSchema, db: Session = Depends(get_db)):
+    motorista_atualizar = db.query(Motorista).filter(Motorista.id_motorista == id).first()
+
+    if not motorista_atualizar:
         raise HTTPException(
-            status_code = status.HTTP_404_NOT_FOUND, 
-            detail = f"Pagamento com ID {id} não encontrado"
-            )
-
-    for campo, valor in dados.model_dump().items():
-        setattr(pagamento, campo, valor)
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"O motorista com ID {id} não foi encontrado")
     
+    for key, value in motorista.model_dump().items():
+        setattr(motorista_atualizar, key, value)
     db.commit()
-    db.refresh(pagamento)
+    db.refresh(motorista_atualizar)
+    return motorista_atualizar
 
-    return pagamento
+
+

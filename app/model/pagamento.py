@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, Integer, DECIMAL, DateTime, ForeignKey
+from sqlalchemy import Column, BigInteger, Integer, DECIMAL, DateTime, ForeignKey, String
 from app.database import Base
 
 
@@ -11,10 +11,8 @@ class PagamentoModel (Base):
     valor = Column(DECIMAL(10,2))
 
     id_metodo_pagamento = Column(
-        Integer,
-        ForeignKey("metodo_pagamento.id_metodo_pagamento")
-    )
+    Integer,ForeignKey("metodo_pagamento.id_metodo_pagamento"))
 
-    datahora_transacao = Column(DateTime)
+    datahora_transacao = Column(String(45))
 
     

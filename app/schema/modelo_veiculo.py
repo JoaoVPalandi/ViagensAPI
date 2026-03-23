@@ -8,7 +8,7 @@ class ModeloVeiculoSchema(BaseModel):
     ano: Optional[int] = None
     capacidade: Optional[int] = None
     propriedade: Optional[str] = None
-    id_tipo_combustivel: Optional[str] = None
+    id_tipo_combustivel: Optional[int] = None
 
     class Config:
         from_attributes = True

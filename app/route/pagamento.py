@@ -22,7 +22,7 @@ async def listar_pagamentos(db: Session = Depends(get_db)):
 
 @pagamento.delete("/delete/{id}")
 async def deletar_pagamento(id: int, db: Session = Depends(get_db)):
-    pagamento = db.query(PagamentoModel).filter(PagamentoModel.id_pagamentos == id).first()
+    pagamento = db.query(PagamentoModel).filter(PagamentoModel.id_pagamento == id).first()
 
     if not pagamento:
         raise HTTPException(
@@ -36,7 +36,7 @@ async def deletar_pagamento(id: int, db: Session = Depends(get_db)):
 
 @pagamento.put("/update/{id}")
 async def atualizar_pagamento(id: int, dados: PagamentoSchema, db: Session = Depends(get_db)):
-    pagamento = db.query(PagamentoModel).filter(PagamentoModel.id_pagamentos == id).first()
+    pagamento = db.query(PagamentoModel).filter(PagamentoModel.id_pagamento == id).first()
 
     if not pagamento:
         raise HTTPException(

@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from app.database import Base
 
 
-class Veiculo(Base):
+class VeiculoModel(Base):
     __tablename__ = "veiculo"
 
     id_veiculo = Column(Integer, primary_key=True)
@@ -13,7 +13,7 @@ class Veiculo(Base):
         ForeignKey("modelo_veiculo.id_modelo_veiculo")
     )
 
-    tem_seguro = Column(Integer)
+    tem_seguro = Column(String(3))
 
     id_classe_veiculo = Column(
         Integer,
