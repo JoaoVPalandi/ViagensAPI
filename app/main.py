@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
 
-##---------------------------MODULOS DAS ROTAS--------------------------------##
 
 from app.route.classe_veiculos import classe_veiculo
 from app.route.avaliacao import avaliacao
@@ -17,9 +16,10 @@ from app.route.tipo_combustivel import tipo_combustivel
 from app.route.usuario import usuario
 from app.route.veiculos import veiculo
 
-##----------------------------------------------------------------------------##
-Base.metadata.create_all(bind=engine)
-app = FastAPI()
+Base.metadata.create_all(bind=engine) #cria o banco de dados
+
+app = FastAPI() #Inicia a Aplicação
+
 app.include_router(avaliacao, prefix="/avaliacao", tags=["Avaliação"])
 app.include_router(classe_veiculo, prefix="/classe_veiculo", tags=["Classe Veículo"])
 app.include_router(pagamento, prefix="/pagamento", tags=["Pagamento"])
